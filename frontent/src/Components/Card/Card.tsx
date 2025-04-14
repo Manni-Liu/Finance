@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { JSX } from 'react'
 
 interface Props {
   // Define any props you want to pass to the Card component here
@@ -7,7 +7,7 @@ interface Props {
   price: number;
 }
 
-const Card = ({ companyName, ticker, price }: Props) => {
+const Card:React.FC<Props> = ({ companyName, ticker, price }: Props):JSX.Element => {
   return (
     <div className="details">
       <h2>
