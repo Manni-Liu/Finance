@@ -5,6 +5,7 @@ import Search from "../../Components/Search/Search";
 import ListPortfolio from "../../Components/Portfolio/ListPortfolio/ListPortfolio";
 import CardList from "../../Components/CardList/CardList";
 import { PortfolioGet } from "../../Models/Portfolio";
+import Navbar from "../../Components/Navbar/Navbar";
 
 
 interface Props {}
