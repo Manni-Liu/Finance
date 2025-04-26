@@ -22,18 +22,19 @@ const Navbar = (props: Props) => {
             <Link to="/design" className="text-black hover:text-darkBlue">
               Design Guide
             </Link>
+     
           </div>
         </div>
 
         {/* Right Side: You can add more nav links here if needed */}
-        <div className="hidden lg:flex items-center space-x-6 text-back">
+        {/* <div className="hidden lg:flex items-center space-x-6 text-back">
           <Link to="/about" className="hover:text-darkBlue">
             About
           </Link>
           <Link to="/contact" className="hover:text-darkBlue">
             Contact
           </Link>
-        </div>
+        </div> */}
       </div>
     </nav>
   );

@@ -5,7 +5,7 @@ import Search from "../../Components/Search/Search";
 import ListPortfolio from "../../Components/Portfolio/ListPortfolio/ListPortfolio";
 import CardList from "../../Components/CardList/CardList";
 import { PortfolioGet } from "../../Models/Portfolio";
-import Navbar from "../../Components/Navbar/Navbar";
+
 
 
 interface Props {}
@@ -15,7 +15,7 @@ const SearchPage = (props: Props) => {
     const [portfolioValues, setPortfolioValues] = useState<PortfolioGet[]>([]);
     const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
     const [serverError, setServerError] = useState<string | null>(null);
-  
+
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
       setSearch(e.target.value);
     };
@@ -27,15 +27,25 @@ const SearchPage = (props: Props) => {
       const updatedPortfolio = [...portfolioValues, e.target[0].value];
       setPortfolioValues(updatedPortfolio);
     };
-  
-    const onPortfolioDelete = (e: any) => {
+
+    // const onPortfolioDelete = (e: any) => {
+    //   e.preventDefault();
+    //   const valueToDelete = e.target.getAttribute("data-value");
+    //   const removed = portfolioValues.filter((value) => value !== valueToDelete);
+    //   setPortfolioValues(removed);
+    // };
+    const onPortfolioDelete = (e: SyntheticEvent) => {
       e.preventDefault();
-      const removed = portfolioValues.filter((value) => {
-        return value !== e.target[e].value;
-      });
-      setPortfolioValues(removed);
+      const form = e.target as HTMLFormElement;
+      const input = form.querySelector("input");
+      const valueToDelete = input?.value;
+    
+      if (valueToDelete) {
+        const removed = portfolioValues.filter((value) => value.symbol !== valueToDelete);
+        setPortfolioValues(removed);
+      }
     };
-  
+
     const onSearchSubmit = async (e: SyntheticEvent) => {
       e.preventDefault();
       const result = await searchCompanies(search);
