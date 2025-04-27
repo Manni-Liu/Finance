@@ -1,15 +1,17 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
-import CardList from './Components/CardList/CardList';
-import Search from './Components/Search/Search';
+import { Outlet } from "react-router";
+
+import Navbar from './Components/Navbar/Navbar';
 
 function App() {
   return (
     <div className="App">
-      <Search />
-      <CardList />
+      <Navbar />
+      <Outlet />
     </div>
+
   );
 }
 
