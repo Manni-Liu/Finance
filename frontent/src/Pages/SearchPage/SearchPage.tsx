@@ -16,15 +16,53 @@ const SearchPage = (props: Props) => {
     const [searchResult, setSearchResult] = useState<CompanySearch[]>([]);
     const [serverError, setServerError] = useState<string | null>(null);
 
+    // useEffect(() => {
+    //   getPortfolio();
+    // }, []);
+
     const handleSearchChange = (e: ChangeEvent<HTMLInputElement>) => {
       setSearch(e.target.value);
     };
+
+    // const getPortfolio = () => {
+    //   portfolioGetAPI()
+    //     .then((res) => {
+    //       if (res?.data) {
+    //         setPortfolioValues(res?.data);
+    //       }
+    //     })
+    //     .catch((e) => {
+    //       setPortfolioValues(null);
+    //     });
+    // };
   
-    const onPortfolioCreate = (e: any) => {
+    // const onPortfolioCreate = (e: any) => {
+    //   e.preventDefault();
+    //   const exists = portfolioValues.find((value) => value === e.target[0].value);
+    //   if (exists) return;
+    //   const updatedPortfolio = [...portfolioValues, e.target[0].value];
+    //   setPortfolioValues(updatedPortfolio);
+    // };
+
+    const onPortfolioCreate = (e: SyntheticEvent) => {
       e.preventDefault();
-      const exists = portfolioValues.find((value) => value === e.target[0].value);
+      const form = e.target as HTMLFormElement;
+      const symbol = (form.elements[0] as HTMLInputElement).value;
+      const company = searchResult.find((company) => company.symbol === symbol);
+      if (!company) return; 
+      const exists = portfolioValues.find((value) => value.symbol === symbol);
       if (exists) return;
-      const updatedPortfolio = [...portfolioValues, e.target[0].value];
+      const newPortfolio: PortfolioGet = {
+        id: Math.floor(Math.random() * 1000), // 假设你生成一个临时的 id
+        symbol: company.symbol,
+        companyName: company.name,
+        purchase: 0,
+        lastDiv: 0,
+        industry: "",
+        marketCap: 0,
+        comments: undefined
+      };
+      const updatedPortfolio = [...portfolioValues, newPortfolio];
       setPortfolioValues(updatedPortfolio);
     };
 
