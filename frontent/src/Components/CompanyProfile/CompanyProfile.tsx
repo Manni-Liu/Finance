@@ -3,6 +3,7 @@ import { CompanyKeyMetrics } from '../../company';
 import { useOutletContext } from 'react-router';
 import { getKeyMetrics } from '../../api'; // Adjust the path based on your project structure
 import RatioList from '../RatioList/RatioList';
+import Spinner from '../Spinners/Spinner';
 
 type Props = {}
 
@@ -86,11 +87,10 @@ const CompanyProfile = (props: Props) => {
           {/* <StockComment stockSymbol={ticker} /> */}
         </>
       ) : (
-        "Loading..."
-        // <Spinner />
+        <Spinner />
       )}
     </>
   );
 };
 
-export default CompanyProfile
+export default CompanyProfile;
